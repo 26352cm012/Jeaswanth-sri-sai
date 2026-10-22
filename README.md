@@ -23,6 +23,6 @@ You can use different filenames, but then update the matching paths in `index.ht
 
 ## Personalize the page
 
-Open `index.html) and edit the birthday greeting, name, and letter text. The theme is controlled by CSS variables near the top of the stylesheet: `--bg`, `--panel`, `--ink`, `--muted`, `--accent`, `--accent2`, and `--line`.
+Open `index.html` and edit the birthday greeting, name, and letter text. The theme is controlled by CSS variables near the top of the stylesheet: `--bg`, `--panel`, `--ink`, `--muted`, `--accent`, `--accent2`, and `--line`.
 
 The site is mobile responsive and includes a welcome screen, animated flower accents, a photo gallery/lightbox, a personal letter, and optional background music.
