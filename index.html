@@ -83,7 +83,10 @@ section.section{padding:clamp(78px,10vw,145px) clamp(22px,8vw,120px)}.gallery-se
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer"><button class="lightbox-close" id="lightboxClose" aria-label="Close photo">×</button><img id="lightboxImage" alt="Selected birthday memory"></div>
 <script>
 (()=>{const intro=document.getElementById('intro'),site=document.getElementById('site'),beginBtn=document.getElementById('beginBtn'),replayBtn=document.getElementById('replayBtn'),musicBtn=document.getElementById('musicBtn'),musicLabel=document.getElementById('musicLabel'),audio=document.getElementById('bgMusic'),letterBtn=document.getElementById('openLetter'),letterPaper=document.getElementById('letterPaper'),lightbox=document.getElementById('lightbox'),lightboxImage=document.getElementById('lightboxImage'),lightboxClose=document.getElementById('lightboxClose');let musicOn=false;
-async function startMusic(){try{await audio.play();musicOn=true;musicBtn.classList.add('playing');musicLabel.textContent='Music on'}catch(e){musicLabel.textContent='Tap for music';setTimeout(()=>{if(!musicOn)musicLabel.textContent='Music off'},2400)}}
+function setMusicOn(){musicOn=true;musicBtn.classList.add('playing');musicLabel.textContent='Music on'}
+async function startMusic(){try{await audio.play();setMusicOn()}catch(e){musicLabel.textContent='Tap for music'}}
+// Try audible autoplay as soon as the page opens. Browsers may block it until the visitor interacts.
+audio.play().then(setMusicOn).catch(()=>{musicLabel.textContent='Tap for music'});
 function begin(){intro.classList.add('hide');site.classList.add('visible');document.body.classList.remove('locked');startMusic();setTimeout(()=>document.getElementById('home').scrollIntoView({behavior:'smooth'}),100);revealEls.forEach(el=>observer.observe(el))}
 beginBtn.addEventListener('click',begin);replayBtn.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'});document.body.classList.add('locked');intro.classList.remove('hide');site.classList.remove('visible')});
 musicBtn.addEventListener('click',async()=>{if(!musicOn)await startMusic();else{audio.pause();musicOn=false;musicBtn.classList.remove('playing');musicLabel.textContent='Music off'}});
